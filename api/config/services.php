@@ -35,10 +35,9 @@ return [
         ],
     ],
     'openweather' => [
-        'key' => env('OPENWEATHER_API_KEY'),
-        'base_url' => env('OPENWEATHER_BASE_URL', 'https://api.openweathermap.org/data/3.0/onecall'),
+        'key' => env('OPENWEATHER_API_KEY'), // Must match .env exactly
+        'base_url' => env('OPENWEATHER_BASE_URL', 'https://api.openweathermap.org/data/2.5/onecall'),
         'geo_url' => env('OPENWEATHER_GEO_URL', 'https://api.openweathermap.org/geo/1.0/direct'),
         'reverse_geo_url' => env('OPENWEATHER_REVERSE_GEO_URL', 'https://api.openweathermap.org/geo/1.0/reverse'),
     ],
-
 ];

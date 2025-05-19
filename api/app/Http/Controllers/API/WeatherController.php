@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,13 +12,17 @@ use Illuminate\Support\Facades\Validator;
 class WeatherController extends Controller
 {
     protected $apiKey;
-    protected $baseUrl = 'https://api.openweathermap.org/data/3.0/onecall';
+    protected $baseUrl = 'https://api.openweathermap.org/data/2.5/onecall';
     protected $geoUrl = 'https://api.openweathermap.org/geo/1.0/direct';
     protected $reverseGeoUrl = 'https://api.openweathermap.org/geo/1.0/reverse';
 
     public function __construct()
     {
+        // Load API key and URLs from config
         $this->apiKey = config('services.openweather.key');
+        $this->baseUrl = config('services.openweather.base_url');
+        $this->geoUrl = config('services.openweather.geo_url');
+        $this->reverseGeoUrl = config('services.openweather.reverse_geo_url');
     }
 
     /**
@@ -53,6 +57,7 @@ class WeatherController extends Controller
                 'q' => $city,
                 'limit' => 1,
                 'appid' => $this->apiKey,
+                'units' => 'metric',
             ]);
 
             if (!$geoResponse->successful()) {
